@@ -10,16 +10,20 @@ function agregarAmigo() {
     console.log(amigos);
 
     if(!amigo){
+        alert("error no se puede mandar espacios vacios");
         return asignarTextoElemento("h2", "no puedes ingresar un valor vacio");
     }
     if (amigos.includes(amigo)) {
+        alert("error ese nombre ya esta en la lista");
         return asignarTextoElemento("h2", "ese amigo ya esta en la lista del sorteo");
     }
     if (amigos.length >= numeroMaximo) {
+        alert("llegaste al limite de amigos a agregar")
         return asignarTextoElemento("h2", "No puedes agregar más amigos al sorteo.");
     }
     else {
         amigos.push(amigo);
+        alert("se agrego a tu amigo al sorteo");
         asignarTextoElemento("h2", `¡Amigo agregado: ${amigo}!`);
         limpiarCampos();
         mostrarLista();
