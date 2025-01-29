@@ -21,7 +21,40 @@ function agregarAmigo() {
     else {
         amigos.push(amigo);
         asignarTextoElemento("h2", `¡Amigo agregado: ${amigo}!`);
+        limpiarCampos();
+        mostrarLista();
         return amigos;
+    }
+}
+
+function mostrarLista(){
+
+    let lista = document.getElementById("listaAmigos");
+
+    lista.innerHTML = "";
+
+    if (amigos.length > 0) {
+        amigos.forEach((amigo, index) => {
+            let li = document.createElement("li");
+            li.textContent = `${index + 1}. ${amigo}`;
+            lista.appendChild(li);
+        });
+    } else {
+        lista.innerHTML = "<li>No hay amigos en la lista.</li>";
+    }
+}
+
+function sortearAmigo(){
+    
+    if(amigos.length > 0){
+        
+        let indiceAleatorio = generarNumeroAleatorio(amigos.length);
+
+        let amigoSorteado = amigos[indiceAleatorio];
+
+        asignarTextoElemento("h2", `¡El amigo sorteado es: ${amigoSorteado}!`);
+    }else {
+        asignarTextoElemento("h2", "No hay amigos para sortear.");
     }
 }
 
@@ -32,7 +65,10 @@ function asignarTextoElemento(elemento, texto) {
 
 }
 
-function generarNumeroAleatorio() {
-    return Math.floor(Math.random() * numeroMaximo) + 1;
+function generarNumeroAleatorio(limite) {
+    return Math.floor(Math.random() * limite) + 1;
 }
 
+function limpiarCampos(){
+    document.getElementById("amigo").value = ""; 
+}
